@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.6.0/css/sharp-duotone-solid.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.6.0/css/sharp-thin.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.6.0/css/sharp-solid.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.6.0/css/sharp-regular.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.6.0/css/sharp-light.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <section id="canvas">
+      <div class="screen position-relative" id="screen">
+        <!-- ======================Add task Page======================== -->
+        <section id="addTaskPage" class="addTaskPage position-absolute p-3">
+          <section
+            id="addTaskHeader"
+            class="addTaskHeader d-flex justify-content-between align-items-start"
+          >
+            <i
+              class="fa-regular fa-arrow-left pointer"
+              style="font-size: 20px"
+              id="returnToHomeArrow"
+            ></i>
+            <p>Add New Task</p>
+            <i
+              class="fa-duotone fa-solid fa-sliders"
+              style="font-size: 20px"
+            ></i>
+          </section>
+          <section id="addTaskBody" class="addTaskBody p-3">
+            <div
+              class="addTaskIconPart d-flex justify-content-center align-items-center mb-5"
+            >
+              <div class="centralIcon">
+                <i
+                  class="fa-duotone fa-solid fa-pen-paintbrush"
+                  style="font-size: 23px"
+                ></i>
+              </div>
+            </div>
+            <form
+              action="#"
+              id="addTaskForm"
+              class="d-flex flex-column justify-content-between align-items-center gap-4"
+            >
+              <input
+                type="text"
+                name="taskTitle"
+                id="taskTitle"
+                data-title="taskTitle"
+                placeholder="What do you wanna do?"
+                class="w-100 addPageInput" required
+              />
+              <select
+                class="form-select addPageInput"
+                id="taskType"
+                name="taskType"
+                aria-label="Default select example"
+              >
+                <option selected>Personal</option>
+                <option value="Business">Business</option>
+                <option value="Others">Others</option>
+              </select>
+              <input
+                type="text"
+                name="taskPlace"
+                id="taskPlace"
+                data-title="taskPlace"
+                placeholder="Place"
+                class="w-100 addPageInput" required
+              />
+              <input
+                type="date"
+                name="taskDate"
+                id="taskDate"
+                data-title="taskDate"
+                class="w-100 addPageInput" required
+              />
+              <button type="submit" class="submitTaskBtn" id="taskAddDoneBtn">
+                Add Task
+              </button>
+            </form>
+          </section>
+        </section>
+        <!-- ======================Add task Page======================== -->
+        <section id="header">
+          <div class="header">
+            <div class="d-flex justify-content-between">
+              <div class="headerLeft">
+                <i
+                  class="fa-sharp fa-regular fa-bars-staggered pointer"
+                  style="font-size: 25px"
+                ></i>
+                <h1 class="lg-header mt-2">
+                  Your <br />
+                  Things
+                </h1>
+                <p class="date mt-4" id="todaysDate">7 November, 2024</p>
+              </div>
+              <div
+                class="headerRight text-start d-flex gap-1 flex-wrap justify-content-between align-items-center"
+              >
+                <button id="addTaskBtn" class="addTaskBtn mb-2">
+                  Add New Task
+                </button>
+                <div id="personal" class="personal">
+                  <h3 class="taskCount" id="personalCount">0</h3>
+                  <p class="smallText">Personal</p>
+                </div>
+                <div id="business" class="business">
+                  <h3 class="taskCount" id="businessCount">0</h3>
+                  <p class="smallText">Business</p>
+                </div>
+                <div id="complete" class="complete">
+                  <h3 class="taskCount" id="completeCount">0</h3>
+                  <p class="smallText">Complete</p>
+                </div>
+                <div id="due" class="due text-start me-4">
+                  <h3 class="taskCount" id="dueCount">0</h3>
+                  <p class="smallText">Due</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="headerBorder"></div>
+        <section id="body">
+          <div id="inbox" class="inbox">
+            <p>
+              Inbox<span
+                id="totalTaskPending"
+                style="
+                  color: white;
+                  background-color: rgb(105, 105, 105);
+                  padding: 2px;
+                  border-radius: 20%;
+                  margin-left: 10px;
+                  font-size: 10px;
+                  margin-bottom: 20px;
+                "
+                >0</span
+              >
+            </p>
+            <div
+              class="taskSection d-flex align-items-center position-relative"
+            >
+              <div class="form-check pointer">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+              </div>
+              <div class="task flex-grow-1">
+                <h6 class="taskHeader">Attend meeting with Samuel</h6>
+                <p class="taskTag">Busines</p>
+                <p class="taskDeadLine">12 November</p>
+                <i
+                  class="fa-regular fa-pen-to-square taskEdit position-absolute pointer"
+                  id="editTaskBtn"
+                  style="font-size: 20px; color: blue"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </body>
+  <script src="/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</html>
