@@ -16,7 +16,10 @@ const totalPending = document.getElementById("totalTaskPending");
 const businessTaskPending = document.getElementById("businessCount");
 const dueTaskCount = document.getElementById("dueCount");
 const personalTaskPending = document.getElementById('personalCount');
+// const taskDeleteBtn = document.get('taskDelete');
+// const taskEditBtn = document.getElementById('taskEdit');
 
+//Date Part===================================================
 const formattedDate = new Intl.DateTimeFormat('en-US', {
     day: 'numeric',
     month: 'long',
@@ -30,6 +33,9 @@ addTaskBtn.addEventListener("click", () => {
 returnToHome.addEventListener("click", () => {
   addTaskPage.style.transform = "translateX(-100%)";
 });
+
+
+//task submittion==============================================
 addTaskForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(addTaskForm);
@@ -92,15 +98,26 @@ addTaskForm.addEventListener("submit", (event) => {
     `<i class="fa-regular fa-pen-to-square taskEdit position-absolute pointer" id="editTaskBtn"
                                 style="font-size: 20px; color: blue"></i>`
   );
+  taskDetails.insertAdjacentHTML(
+    "beforeend",
+    '<i class="fa-solid fa-trash-xmark taskDelete pointer position-absolute" style="font-size: 20px; color: red"></i>'
+  );
   newTaskElement.appendChild(taskDetails);
   //finally appending the created element in inbox
   inbox.appendChild(newTaskElement);
   pendingCount++;
   totalPending.innerText = pendingCount;
 });
+
+
+// back to home after adding task
 addingDoneBtn.addEventListener("click", () => {
   addTaskPage.style.transform = "translateX(-100%)";
 });
+
+
+
+//checking tasks===============================================
 inbox.addEventListener("click", (event) => {
   event.stopPropagation();
   if (event.target.classList.contains("form-check-input")) {
@@ -120,5 +137,54 @@ inbox.addEventListener("click", (event) => {
     pendingCount--;
     totalPending.innerText = pendingCount;
     completedTaskCount.innerText = taskCount;
+  }
+});
+
+//modifying task===========================================
+inbox.addEventListener('click', event => {
+  event.stopPropagation();
+  //deleting task==========================================
+  if (event.target.classList.contains("taskDelete")) {
+    if (event.target.parentElement.parentElement.getAttribute('task-type') === 'business') {
+      businessCount--;
+      businessTaskPending.innerText = businessCount;
+    }
+    if (event.target.parentElement.parentElement.getAttribute('task-type') === 'personal') {
+      personalCount--;
+      personalTaskPending.innerText = personalCount;
+    }
+    if (event.target.parentElement.parentElement.getAttribute('task-type') === 'others') {
+      othersCount--;
+    }
+    event.target.parentElement.parentElement.remove();
+    pendingCount--;
+    totalPending.innerText = pendingCount;
+    completedTaskCount.innerText = taskCount;
+  }
+  //renaming task=============================================
+  if (event.target.classList.contains("taskEdit")) {
+    //creating the edit prompt
+    const editPrompt = document.createElement("div");
+    editPrompt.classList.add('d-flex', 'gap-2');
+    const editInputField = document.createElement("input");
+    editInputField.classList.add("editInput");
+    const editBtnSubmit = document.createElement('button');
+    editBtnSubmit.classList.add("editSubmitBtn");
+    editBtnSubmit.innerText = "✔";
+    editPrompt.appendChild(editInputField);
+    editPrompt.appendChild(editBtnSubmit);
+    event.target.parentElement.replaceChild(editPrompt, event.target.parentElement.firstElementChild)
+  }
+
+  //submitting the renamed task
+  if(event.target.classList.contains('editSubmitBtn')) {
+    const taskAfterRename = event.target.parentElement.firstElementChild.value;
+    const renamedTask = document.createElement('div');
+    const taskHeader = document.createElement("h6");
+    taskHeader.classList.add("taskHeader");
+    taskHeader.innerText = taskAfterRename;
+    renamedTask.appendChild(taskHeader);
+    event.target.parentElement.replaceChild(renamedTask, event.target.parentElement.firstElementChild)
+    event.target.remove();
   }
 });
