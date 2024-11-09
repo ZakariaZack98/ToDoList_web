@@ -48,11 +48,11 @@ img {
   display: block;
 }
 .invisible {
-  /* height: 0px;
+  height: 0px;
   margin: 0;
   padding: 0;
-  overflow: hidden; */
-  display: none;
+  overflow: hidden;
+  /* display: none; */
 }
 .pointer {
   cursor: pointer;
