@@ -43,19 +43,16 @@ img {
 }
 :root {
   --fnt_primary: "Poppins", sans-serif;
-  --fnt_secodery: sans-serif;
-  --clr_dark: #0f172a;
-  --clr_light: #f1f5f9;
-  --clr_accent: #34c7a2;
-  --clr_ash: #5a5a5a;
-  --border-red: 1px solid red;
-  --trn_delay: ease-in 0.3s;
-  --box_shd: 0 0 20px 20px rgba(0, 0, 0, 0.24);
-  --text_regular: clamp(1rem, 1.1vw + 1px, 18px);
-  --text_large: clamp(1.1rem, 1.3vw + 1px, 20px);
-  --xxl_header: clamp(2.5rem, 3.3vw + 1px, 70px);
-  --xl_header: clamp(2.5rem, 2.5vw + 1px, 50px);
-  --l_header: clamp(1.5rem, 1.5vw + 1px, 30px);
+}
+.visible {
+  display: block;
+}
+.invisible {
+  /* height: 0px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; */
+  display: none;
 }
 .pointer {
   cursor: pointer;

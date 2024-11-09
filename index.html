@@ -132,21 +132,21 @@
                 <button id="addTaskBtn" class="addTaskBtn mb-2">
                   Add New Task
                 </button>
-                <div id="personal" class="personal">
+                <div id="personal">
                   <h3 class="taskCount" id="personalCount">0</h3>
-                  <p class="smallText">Personal</p>
+                  <p class="smallText pointer personal">Personal</p>
                 </div>
-                <div id="business" class="business">
+                <div id="business">
                   <h3 class="taskCount" id="businessCount">0</h3>
-                  <p class="smallText">Business</p>
+                  <p class="smallText pointer business">Business</p>
                 </div>
-                <div id="complete" class="complete">
+                <div id="complete">
                   <h3 class="taskCount" id="completeCount">0</h3>
-                  <p class="smallText">Complete</p>
+                  <p class="smallText pointer complete">Complete</p>
                 </div>
-                <div id="due" class="due text-start me-4">
+                <div id="due" class="text-start me-4">
                   <h3 class="taskCount" id="dueCount">0</h3>
-                  <p class="smallText">Due</p>
+                  <p class="smallText pointer due">Due</p>
                 </div>
               </div>
             </div>
@@ -154,8 +154,7 @@
         </section>
         <div class="headerBorder"></div>
         <section id="body">
-          <div id="inbox" class="inbox">
-            <p>
+          <p style="transform: translateY(-10px);">
               Inbox<span
                 id="totalTaskPending"
                 style="
@@ -165,12 +164,13 @@
                   border-radius: 20%;
                   margin-left: 10px;
                   font-size: 10px;
-                  margin-bottom: 20px;
+
                 "
                 >0</span
               >
             </p>
-            <div
+          <div id="inbox" class="inbox">
+            <!-- <div
               class="taskSection d-flex align-items-center position-relative"
             >
               <div class="form-check pointer">
@@ -189,7 +189,7 @@
                   class="fa-regular fa-pen-to-square taskEdit position-absolute pointer" style="font-size: 20px; color: blue"></i>
                 <i class="fa-solid fa-trash-xmark taskDelete pointer position-absolute" style="font-size: 20px; color: red"></i>
               </div>
-            </div>
+            </div> -->
           </div>
         </section>
       </div>

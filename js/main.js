@@ -4,6 +4,7 @@ let personalCount = 0;
 let businessCount = 0;
 let dueCount = 0;
 let othersCount = 0;
+const header = document.getElementById('header');
 const date = document.getElementById("todaysDate");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const addTaskPage = document.getElementById("addTaskPage");
@@ -188,3 +189,28 @@ inbox.addEventListener('click', event => {
     event.target.remove();
   }
 });
+
+//fitering task by type===============================================
+header.addEventListener('click', event => {
+  if(event.target.classList.contains('personal')) {
+    console.log('clicked')
+    Array.from(inbox.children).forEach(tasksec => {
+      if(
+        tasksec.getAttribute('task-type') === 'business' ||
+        tasksec.getAttribute('task-type') === 'others'
+    ) {
+        tasksec.classList.toggle('invisible');
+      }
+    })
+  }
+  if(event.target.classList.contains('business')) {
+    Array.from(inbox.children).forEach(tasksec => {
+      if(
+        tasksec.getAttribute('task-type') === 'personal' ||
+        tasksec.getAttribute('task-type') === 'others'
+    ) {
+        tasksec.classList.toggle('invisible');
+      }
+    })
+  }
+})
