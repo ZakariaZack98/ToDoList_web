@@ -11,6 +11,7 @@ const addTaskPage = document.getElementById("addTaskPage");
 const returnToHome = document.getElementById("returnToHomeArrow");
 const addTaskForm = document.getElementById("addTaskForm");
 const inbox = document.getElementById("inbox");
+const personalTab = document.getElementById('personalTab');
 const addingDoneBtn = document.getElementById("taskAddDoneBtn");
 const completedTaskCount = document.getElementById("completeCount");
 const totalPending = document.getElementById("totalTaskPending");
@@ -193,13 +194,16 @@ inbox.addEventListener('click', event => {
 //fitering task by type===============================================
 header.addEventListener('click', event => {
   if(event.target.classList.contains('personal')) {
-    console.log('clicked')
+    event.target.classList.toggle("activetab");
     Array.from(inbox.children).forEach(tasksec => {
-      if(tasksec.getAttribute('task-type') !== 'personal') tasksec.classList.toggle('invisible');
+      if(tasksec.getAttribute('task-type') !== 'personal') {
+        tasksec.classList.toggle('invisible');
+      }
     })
-    
+
   }
   if(event.target.classList.contains('business')) {
+    event.target.classList.toggle("activetab");
     Array.from(inbox.children).forEach(tasksec => {
       if (tasksec.getAttribute("task-type") !== "business")
         tasksec.classList.toggle("invisible");
