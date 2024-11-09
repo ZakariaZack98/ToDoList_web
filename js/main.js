@@ -191,56 +191,17 @@ inbox.addEventListener('click', event => {
 });
 
 //fitering task by type===============================================
-// header.addEventListener('click', event => {
-//   if(event.target.classList.contains('personal')) {
-//     console.log('clicked')
-//     Array.from(inbox.children).forEach(tasksec => {
-//       if(
-//         tasksec.getAttribute('task-type') === 'business' ||
-//         tasksec.getAttribute('task-type') === 'others'
-//     ) {
-//         tasksec.classList.toggle('invisible');
-//       }
-//     })
-//   }
-//   if(event.target.classList.contains('business')) {
-//     Array.from(inbox.children).forEach(tasksec => {
-//       if(
-//         tasksec.getAttribute('task-type') === 'personal' ||
-//         tasksec.getAttribute('task-type') === 'others'
-//     ) {
-//         tasksec.classList.toggle('invisible');
-//       }
-//     })
-//   }
-// })
-
-header.addEventListener("click", (event) => {
-  if (event.target.classList.contains("personal")) {
-    // const filteredElems = Array.from(inbox.children).filter(tasksec => {
-    //   return tasksec.getAttribute('task-type') === 'personal';
-    // });
-    // Array.from(inbox.children).forEach(elem => {
-    //   if (elem.getAttribute('task-type') !== 'personal') elem.classList.toggle('invisible');
-    // }); //disp
-    // filteredElems.forEach(elem => {
-    //   inbox.appendChild(elem);
-    // })
-    const allChild = Array.from(inbox.children);
-    for(let child of allChild) {
-      if(child.getAttribute('task-type') !== 'personal') {
-        child.classList.toggle('invisible');
-      }
-    }
+header.addEventListener('click', event => {
+  if(event.target.classList.contains('personal')) {
+    console.log('clicked')
+    Array.from(inbox.children).forEach(tasksec => {
+      if(tasksec.getAttribute('task-type') !== 'personal') tasksec.classList.toggle('invisible');
+    })
   }
-  if (event.target.classList.contains("business")) {
-    Array.from(inbox.children).forEach((tasksec) => {
-      if (
-        tasksec.getAttribute("task-type") === "personal" ||
-        tasksec.getAttribute("task-type") === "others"
-      ) {
+  if(event.target.classList.contains('business')) {
+    Array.from(inbox.children).forEach(tasksec => {
+      if (tasksec.getAttribute("task-type") !== "business")
         tasksec.classList.toggle("invisible");
-      }
-    });
+    })
   }
-});
+})
