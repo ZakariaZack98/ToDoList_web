@@ -36,6 +36,14 @@ returnToHome.addEventListener("click", () => {
   addTaskPage.style.transform = "translateX(-100%)";
 });
 
+//updatecount function=========================================
+updatecount = () => {
+  totalPending.innerText = pendingCount;
+  businessTaskPending.innerText = businessCount;
+  personalTaskPending.innerText = personalCount;
+  dueTaskCount.innerText = dueCount;
+  completedTaskCount.innerText = taskCount;
+}
 
 //task submittion==============================================
 addTaskForm.addEventListener("submit", (event) => {
@@ -69,12 +77,12 @@ addTaskForm.addEventListener("submit", (event) => {
   if (formData.get("taskType") === "Business") {
     businessCount++;
     newTaskElement.setAttribute("task-type", "business");
-    businessTaskPending.innerText = businessCount;
+    updatecount();
   }
   if (formData.get("taskType") === "Personal") {
     personalCount++;
     newTaskElement.setAttribute("task-type", "personal");
-    personalTaskPending.innerText = personalCount;
+    updatecount();
   }
   if (formData.get("taskType") === "Others") {
     othersCount++;
@@ -86,7 +94,7 @@ addTaskForm.addEventListener("submit", (event) => {
   taskDate.textContent = formData.get("taskDate");
   if (new Date(formData.get('taskDate')) < new Date()) {
     dueCount++;
-    dueTaskCount.innerText = dueCount;
+    updatecount();
     taskHeader.style.color = "red";
     taskDate.style.color = "red";
   }
@@ -108,7 +116,7 @@ addTaskForm.addEventListener("submit", (event) => {
   //finally appending the created element in inbox
   inbox.appendChild(newTaskElement);
   pendingCount++;
-  totalPending.innerText = pendingCount;
+  updatecount();
 });
 
 
@@ -125,11 +133,11 @@ inbox.addEventListener("click", (event) => {
   if (event.target.classList.contains("form-check-input")) {
     if (event.target.parentElement.parentElement.getAttribute('task-type') === 'business') {
       businessCount--;
-      businessTaskPending.innerText = businessCount;
+      updatecount();
     }
     if (event.target.parentElement.parentElement.getAttribute('task-type') === 'personal') {
       personalCount--;
-      personalTaskPending.innerText = personalCount;
+      updatecount();
     }
     if (event.target.parentElement.parentElement.getAttribute('task-type') === 'others') {
       othersCount--;
@@ -137,8 +145,7 @@ inbox.addEventListener("click", (event) => {
     event.target.parentElement.parentElement.remove();
     taskCount++;
     pendingCount--;
-    totalPending.innerText = pendingCount;
-    completedTaskCount.innerText = taskCount;
+    updatecount();
   }
 });
 
@@ -149,19 +156,18 @@ inbox.addEventListener('click', event => {
   if (event.target.classList.contains("taskDelete")) {
     if (event.target.parentElement.parentElement.getAttribute('task-type') === 'business') {
       businessCount--;
-      businessTaskPending.innerText = businessCount;
+      updatecount();
     }
     if (event.target.parentElement.parentElement.getAttribute('task-type') === 'personal') {
       personalCount--;
-      personalTaskPending.innerText = personalCount;
+      updatecount();
     }
     if (event.target.parentElement.parentElement.getAttribute('task-type') === 'others') {
       othersCount--;
     }
     event.target.parentElement.parentElement.remove();
     pendingCount--;
-    totalPending.innerText = pendingCount;
-    completedTaskCount.innerText = taskCount;
+    updatecount();
   }
   //renaming task=============================================
   if (event.target.classList.contains("taskEdit")) {
@@ -175,7 +181,7 @@ inbox.addEventListener('click', event => {
     editBtnSubmit.innerText = "✔";
     editPrompt.appendChild(editInputField);
     editPrompt.appendChild(editBtnSubmit);
-    event.target.parentElement.replaceChild(editPrompt, event.target.parentElement.firstElementChild)
+    event.target.parentElement.replaceChild(editPrompt, event.target.parentElement.firstElementChild);
   }
 
   //submitting the renamed task
