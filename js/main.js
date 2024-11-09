@@ -197,6 +197,7 @@ header.addEventListener('click', event => {
     Array.from(inbox.children).forEach(tasksec => {
       if(tasksec.getAttribute('task-type') !== 'personal') tasksec.classList.toggle('invisible');
     })
+    
   }
   if(event.target.classList.contains('business')) {
     Array.from(inbox.children).forEach(tasksec => {

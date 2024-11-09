@@ -48,11 +48,11 @@ img {
   display: block;
 }
 .invisible {
-  height: 0px;
+  /* height: 0px;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  /* display: none; */
+  overflow: hidden; */
+  display: none;
 }
 .pointer {
   cursor: pointer;
@@ -75,7 +75,7 @@ img {
 }
 
 #header {
-  height: 30dvh;
+  height: 200px;
   width: 350px;
   background-image: url(../images/mountain-header-blue.png);
   background-size: cover;
@@ -107,7 +107,7 @@ img {
   font-size: 10px;
 }
 
-.due {
+#due {
   color: rgb(255, 83, 40);
 }
 .headerBorder {
@@ -117,7 +117,7 @@ img {
 
 #body {
   padding: 1rem;
-  margin-top: 30dvh;
+  margin-top: 200px;
 }
 
 .taskSection {
