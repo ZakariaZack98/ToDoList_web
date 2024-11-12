@@ -244,6 +244,10 @@ img {
     background-image: linear-gradient(to left, #286bc9, #8bb2e7);
     padding: 0.5rem 0;
     color: whitesmoke;
+    transition: 0.3s ease;
+}
+.submitTaskBtn:hover {
+    box-shadow: 0 10px 20px 20px rgba(0, 0, 0, 0.185);
 }
 .btn:hover {
 	background-color: transparent !important;

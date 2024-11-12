@@ -221,7 +221,7 @@ inbox.addEventListener('click', event => {
       );
       event.target.remove();
     }
-    else alert('Input is empty.')
+    else alert('Please fill out this field.')
   }
 });
 
