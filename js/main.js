@@ -10,6 +10,7 @@ const addTaskBtn = document.getElementById("addTaskBtn");
 const addTaskPage = document.getElementById("addTaskPage");
 const returnToHome = document.getElementById("returnToHomeArrow");
 const addTaskForm = document.getElementById("addTaskForm");
+const body = document.getElementById('body');
 const inbox = document.getElementById("inbox");
 const personalTab = document.getElementById('personalTab');
 const addingDoneBtn = document.getElementById("taskAddDoneBtn");
@@ -18,8 +19,6 @@ const totalPending = document.getElementById("totalTaskPending");
 const businessTaskPending = document.getElementById("businessCount");
 const dueTaskCount = document.getElementById("dueCount");
 const personalTaskPending = document.getElementById('personalCount');
-// const taskDeleteBtn = document.get('taskDelete');
-// const taskEditBtn = document.getElementById('taskEdit');
 
 //Date Part===================================================
 const formattedDate = new Intl.DateTimeFormat('en-US', {
@@ -31,9 +30,11 @@ date.innerText = formattedDate;
 
 addTaskBtn.addEventListener("click", () => {
   addTaskPage.style.transform = "translateX(0%)";
+  body.style.opacity = 0;
 });
 returnToHome.addEventListener("click", () => {
   addTaskPage.style.transform = "translateX(-100%)";
+  body.style.opacity = 1;
 });
 
 //updatecount function=========================================
@@ -114,7 +115,7 @@ addTaskForm.addEventListener("submit", (event) => {
   );
   newTaskElement.appendChild(taskDetails);
   //finally appending the created element in inbox
-  inbox.appendChild(newTaskElement);
+  inbox.insertAdjacentElement('afterbegin', newTaskElement);
   pendingCount++;
   updatecount();
 });
@@ -123,6 +124,7 @@ addTaskForm.addEventListener("submit", (event) => {
 // back to home after adding task
 addingDoneBtn.addEventListener("click", () => {
   addTaskPage.style.transform = "translateX(-100%)";
+  body.style.opacity = 1;
 });
 
 
@@ -187,13 +189,19 @@ inbox.addEventListener('click', event => {
   //submitting the renamed task
   if(event.target.classList.contains('editSubmitBtn')) {
     const taskAfterRename = event.target.parentElement.firstElementChild.value;
-    const renamedTask = document.createElement('div');
-    const taskHeader = document.createElement("h6");
-    taskHeader.classList.add("taskHeader");
-    taskHeader.innerText = taskAfterRename;
-    renamedTask.appendChild(taskHeader);
-    event.target.parentElement.replaceChild(renamedTask, event.target.parentElement.firstElementChild)
-    event.target.remove();
+    if (taskAfterRename.length > 0) {
+      const renamedTask = document.createElement("div");
+      const taskHeader = document.createElement("h6");
+      taskHeader.classList.add("taskHeader");
+      taskHeader.innerText = taskAfterRename;
+      renamedTask.appendChild(taskHeader);
+      event.target.parentElement.replaceChild(
+        renamedTask,
+        event.target.parentElement.firstElementChild
+      );
+      event.target.remove();
+    }
+    else alert('Input is empty.')
   }
 });
 
