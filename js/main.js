@@ -237,7 +237,9 @@ header.addEventListener('click', event => {
     event.target.classList.toggle("activetab");
     Array.from(inbox.children).forEach(tasksec => {
       if(tasksec.getAttribute('task-type') !== 'personal') {
-        tasksec.classList.toggle('invisible');
+        setTimeout(() => {
+          tasksec.classList.toggle("invisible");
+        }, 300);
       }
     })
 
@@ -252,7 +254,9 @@ header.addEventListener('click', event => {
     event.target.classList.toggle("activetab");
     Array.from(inbox.children).forEach((tasksec) => {
       if (tasksec.getAttribute("task-type") !== "business")
-        tasksec.classList.toggle("invisible");
+        setTimeout(() => {
+          tasksec.classList.toggle("invisible");
+        }, 300);
     });
   }
 });
