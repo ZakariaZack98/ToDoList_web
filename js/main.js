@@ -22,9 +22,9 @@ const personalTaskPending = document.getElementById('personalCount');
 
 //Date Part===================================================
 const formattedDate = new Intl.DateTimeFormat('en-US', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
 }).format(new Date());
 date.innerText = formattedDate;
 
@@ -95,6 +95,7 @@ addTaskForm.addEventListener("submit", (event) => {
   taskDate.classList.add("taskDeadLine");
   taskDate.textContent = formData.get("taskDate");
   if (new Date(formData.get('taskDate')) < new Date()) {
+    newTaskElement.setAttribute('task-status', 'due');
     dueCount++;
     updatecount();
     taskHeader.style.color = "red";
@@ -146,6 +147,9 @@ inbox.addEventListener("click", (event) => {
     if (event.target.parentElement.parentElement.getAttribute('task-type') === 'others') {
       othersCount--;
     }
+    if (event.target.parentElement.parentElement.getAttribute('task-status') === 'due') {
+      dueCount--;
+    }
     setTimeout(() => {
       event.target.parentElement.parentElement.remove();
     }, 500);
@@ -185,6 +189,12 @@ inbox.addEventListener('click', event => {
     ) {
       othersCount--;
     }
+    if (
+      event.target.parentElement.parentElement.getAttribute("task-status") ===
+      "due"
+    ) {
+      dueCount--;
+    }
     setTimeout(() => {
       event.target.parentElement.parentElement.remove();
     }, 500);
@@ -207,7 +217,7 @@ inbox.addEventListener('click', event => {
   }
 
   //submitting the renamed task
-  if(event.target.classList.contains('editSubmitBtn')) {
+  if (event.target.classList.contains('editSubmitBtn')) {
     const taskAfterRename = event.target.parentElement.firstElementChild.value;
     if (taskAfterRename.length > 0) {
       const renamedTask = document.createElement("div");
@@ -227,7 +237,7 @@ inbox.addEventListener('click', event => {
 
 //fitering task by type===============================================
 header.addEventListener('click', event => {
-  if(event.target.classList.contains('personal')) {
+  if (event.target.classList.contains('personal')) {
     //animation
     inbox.style.opacity = 0;
     setTimeout(() => {
@@ -236,7 +246,7 @@ header.addEventListener('click', event => {
     }, 300); //animation
     event.target.classList.toggle("activetab");
     Array.from(inbox.children).forEach(tasksec => {
-      if(tasksec.getAttribute('task-type') !== 'personal') {
+      if (tasksec.getAttribute('task-type') !== 'personal') {
         setTimeout(() => {
           tasksec.classList.toggle("invisible");
         }, 300);
@@ -244,7 +254,7 @@ header.addEventListener('click', event => {
     })
 
   }
-  if(event.target.classList.contains('business')) {
+  if (event.target.classList.contains('business')) {
     //animation
     inbox.style.opacity = 0;
     setTimeout(() => {
