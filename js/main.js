@@ -28,6 +28,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 }).format(new Date());
 date.innerText = formattedDate;
 
+//add task and return to home =================================
 addTaskBtn.addEventListener("click", () => {
   addTaskPage.style.transform = "translateX(0%)";
   body.style.opacity = 0;
@@ -133,6 +134,7 @@ addingDoneBtn.addEventListener("click", () => {
 inbox.addEventListener("click", (event) => {
   event.stopPropagation();
   if (event.target.classList.contains("form-check-input")) {
+    event.target.parentElement.parentElement.classList.add("taskDone"); //animation
     if (event.target.parentElement.parentElement.getAttribute('task-type') === 'business') {
       businessCount--;
       updatecount();
@@ -144,7 +146,9 @@ inbox.addEventListener("click", (event) => {
     if (event.target.parentElement.parentElement.getAttribute('task-type') === 'others') {
       othersCount--;
     }
-    event.target.parentElement.parentElement.remove();
+    setTimeout(() => {
+      event.target.parentElement.parentElement.remove();
+    }, 500);
     taskCount++;
     pendingCount--;
     updatecount();
@@ -156,18 +160,34 @@ inbox.addEventListener('click', event => {
   event.stopPropagation();
   //deleting task==========================================
   if (event.target.classList.contains("taskDelete")) {
-    if (event.target.parentElement.parentElement.getAttribute('task-type') === 'business') {
+    //adding animation
+    event.target.parentElement.parentElement.style.transform =
+      "translateX(100%)";
+    event.target.parentElement.parentElement.classList.add("taskDeleted");
+    //animation ends
+    if (
+      event.target.parentElement.parentElement.getAttribute("task-type") ===
+      "business"
+    ) {
       businessCount--;
       updatecount();
     }
-    if (event.target.parentElement.parentElement.getAttribute('task-type') === 'personal') {
+    if (
+      event.target.parentElement.parentElement.getAttribute("task-type") ===
+      "personal"
+    ) {
       personalCount--;
       updatecount();
     }
-    if (event.target.parentElement.parentElement.getAttribute('task-type') === 'others') {
+    if (
+      event.target.parentElement.parentElement.getAttribute("task-type") ===
+      "others"
+    ) {
       othersCount--;
     }
-    event.target.parentElement.parentElement.remove();
+    setTimeout(() => {
+      event.target.parentElement.parentElement.remove();
+    }, 500);
     pendingCount--;
     updatecount();
   }
@@ -208,6 +228,12 @@ inbox.addEventListener('click', event => {
 //fitering task by type===============================================
 header.addEventListener('click', event => {
   if(event.target.classList.contains('personal')) {
+    //animation
+    inbox.style.opacity = 0;
+    setTimeout(() => {
+      inbox.style.opacity = 1;
+      inbox.style.transition = "0.3s ease";
+    }, 300); //animation
     event.target.classList.toggle("activetab");
     Array.from(inbox.children).forEach(tasksec => {
       if(tasksec.getAttribute('task-type') !== 'personal') {
@@ -217,10 +243,16 @@ header.addEventListener('click', event => {
 
   }
   if(event.target.classList.contains('business')) {
+    //animation
+    inbox.style.opacity = 0;
+    setTimeout(() => {
+      inbox.style.opacity = 1;
+      inbox.style.transition = "0.3s ease";
+    }, 300); //animation
     event.target.classList.toggle("activetab");
-    Array.from(inbox.children).forEach(tasksec => {
+    Array.from(inbox.children).forEach((tasksec) => {
       if (tasksec.getAttribute("task-type") !== "business")
         tasksec.classList.toggle("invisible");
-    })
+    });
   }
 });

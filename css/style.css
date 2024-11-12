@@ -55,6 +55,16 @@ img {
   overflow: hidden;
   /* display: none; */
 }
+.disappear {
+
+
+  opacity: 0;
+}
+.reappear {
+  transition: 0.5s ease;
+  scale: 1;
+  opacity: 1;
+}
 .pointer {
   cursor: pointer;
 }
@@ -71,6 +81,16 @@ img {
   scale: 1.3;
   font-weight: bold;
   transition: 0.3s ease;
+}
+.taskDone {
+  scale: 0.9;
+  opacity: 0;
+  transition: 0.5s ease;
+}
+.taskDeleted {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: 0.8s ease;
 }
 /* ================Mainbody section============================ */
 #canvas {
@@ -105,6 +125,11 @@ img {
   border-radius: 10px;
   color: whitesmoke;
 }
+.addTaskBtn:hover {
+  scale: 1.1;
+  transition: 0.3s ease;
+}
+
 .taskCount {
   font-size: 20px;
   line-height: 110%;
@@ -123,12 +148,15 @@ img {
   margin-top: 200px;
   transition: 0.3s ease;
 }
+/* .inbox {
+  transition: 0.5s;
+} */
 .taskSection {
   border-bottom: 1px solid rgba(0, 0, 0, 0.075);
   padding: 0 1.5rem;
   transform: translateY(0px);
   width: 100%;
-  transition: 0.5s ease;
+  transition: 0.5s ease;;
 }
 .taskHeader {
   font-size: 16px;
