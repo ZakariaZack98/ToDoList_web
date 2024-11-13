@@ -118,6 +118,8 @@ addTaskForm.addEventListener("submit", (event) => {
   newTaskElement.appendChild(taskDetails);
   //finally appending the created element in inbox
   inbox.insertAdjacentElement('afterbegin', newTaskElement);
+  document.getElementById("taskTitle").value = '';
+  document.getElementById("taskPlace").value = '';
   pendingCount++;
   updatecount();
 });

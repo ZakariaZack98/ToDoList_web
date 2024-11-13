@@ -231,6 +231,10 @@ img {
     border-radius: 50%;
     background-color: transparent;
 }
+.--selectMod {
+  color: black !important;
+  background-color: rgba(245, 245, 245, 0.527) !important;
+}
 .addPageInput {
     border: none;
     background-color: transparent;
